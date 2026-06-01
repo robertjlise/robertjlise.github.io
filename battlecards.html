@@ -1,0 +1,442 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Strategic Sales Battlecards — Robert Lise</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --charcoal: #545454;
+    --dark: #1a1a1a;
+    --orange: #E07A3A;
+    --light: #f7f5f2;
+    --white: #ffffff;
+    --mid: #888;
+    --border: #e8e4df;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: var(--light);
+    color: var(--dark);
+  }
+
+  nav {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 100;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1.25rem 5%;
+    background: rgba(247, 245, 242, 0.92);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--border);
+  }
+
+  .nav-logo {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.2rem;
+    font-weight: 700;
+    color: var(--dark);
+    text-decoration: none;
+    letter-spacing: -0.02em;
+  }
+
+  .nav-links {
+    display: flex;
+    gap: 2.5rem;
+    list-style: none;
+  }
+
+  .nav-links a {
+    text-decoration: none;
+    color: var(--charcoal);
+    font-size: 0.875rem;
+    font-weight: 500;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    transition: color 0.2s;
+  }
+
+  .nav-links a:hover { color: var(--orange); }
+
+  .case-hero {
+    padding: 10rem 5% 5rem;
+    background: var(--dark);
+    color: white;
+  }
+
+  .back-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 0.8rem;
+    font-weight: 500;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.5);
+    text-decoration: none;
+    margin-bottom: 2rem;
+    transition: color 0.2s;
+  }
+
+  .back-link:hover { color: var(--orange); }
+  .back-link::before { content: '←  '; }
+
+  .case-label {
+    font-size: 0.7rem;
+    font-weight: 500;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--orange);
+    margin-bottom: 1rem;
+  }
+
+  .case-title {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(2.5rem, 5vw, 4rem);
+    font-weight: 900;
+    line-height: 1.05;
+    letter-spacing: -0.03em;
+    color: white;
+    margin-bottom: 1.5rem;
+    max-width: 800px;
+  }
+
+  .case-subtitle {
+    font-size: 1.1rem;
+    color: rgba(255,255,255,0.6);
+    max-width: 600px;
+    line-height: 1.7;
+    font-weight: 300;
+  }
+
+  .case-meta {
+    display: flex;
+    gap: 3rem;
+    margin-top: 3rem;
+    padding-top: 3rem;
+    border-top: 1px solid rgba(255,255,255,0.15);
+    flex-wrap: wrap;
+  }
+
+  .meta-item span {
+    display: block;
+    font-size: 0.7rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.4);
+    margin-bottom: 0.3rem;
+  }
+
+  .meta-item strong {
+    font-size: 0.95rem;
+    color: white;
+    font-weight: 400;
+  }
+
+  .case-content {
+    max-width: 860px;
+    margin: 0 auto;
+    padding: 5rem 5%;
+  }
+
+  .case-section { margin-bottom: 4rem; }
+
+  .case-section-label {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.75rem;
+    font-size: 0.7rem;
+    font-weight: 500;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--orange);
+    margin-bottom: 1.25rem;
+  }
+
+  .case-section-label::before {
+    content: '';
+    display: block;
+    width: 2rem;
+    height: 1.5px;
+    background: var(--orange);
+  }
+
+  .case-section h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.8rem;
+    font-weight: 700;
+    color: var(--dark);
+    margin-bottom: 1.25rem;
+    line-height: 1.2;
+  }
+
+  .case-section p {
+    font-size: 1.05rem;
+    line-height: 1.8;
+    color: #444;
+    margin-bottom: 1.25rem;
+    font-weight: 300;
+  }
+
+  .case-section p strong {
+    color: var(--dark);
+    font-weight: 500;
+  }
+
+  .callout {
+    background: var(--white);
+    border-left: 4px solid var(--orange);
+    padding: 1.75rem 2rem;
+    margin: 2rem 0;
+  }
+
+  .callout p { margin: 0; font-size: 1rem; color: var(--charcoal); }
+
+  .divider {
+    border: none;
+    border-top: 1px solid var(--border);
+    margin: 3rem 0;
+  }
+
+  /* BATTLECARD DISPLAY */
+  .battlecard-block {
+    margin: 2.5rem 0;
+  }
+
+  .battlecard-caption {
+    font-size: 0.75rem;
+    font-weight: 500;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--mid);
+    margin-bottom: 0.75rem;
+  }
+
+  .battlecard-block img {
+    width: 100%;
+    border: 1px solid var(--border);
+    box-shadow: 0 8px 30px rgba(0,0,0,0.08);
+    display: block;
+  }
+
+  /* PRINCIPLES GRID */
+  .principles-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+    margin: 2rem 0;
+  }
+
+  .principle-box {
+    background: var(--white);
+    padding: 1.5rem;
+    border-top: 3px solid var(--orange);
+  }
+
+  .principle-box h4 {
+    font-size: 0.85rem;
+    font-weight: 500;
+    letter-spacing: 0.04em;
+    color: var(--dark);
+    margin-bottom: 0.5rem;
+    text-transform: uppercase;
+  }
+
+  .principle-box p {
+    font-size: 0.9rem;
+    color: #666;
+    line-height: 1.6;
+    margin: 0;
+    font-weight: 300;
+  }
+
+  .case-cta {
+    background: var(--charcoal);
+    padding: 4rem 5%;
+    text-align: center;
+  }
+
+  .case-cta h3 {
+    font-family: 'Playfair Display', serif;
+    font-size: 2rem;
+    color: white;
+    margin-bottom: 1rem;
+  }
+
+  .case-cta p {
+    color: rgba(255,255,255,0.5);
+    margin-bottom: 2rem;
+    font-weight: 300;
+  }
+
+  .cta-links {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    flex-wrap: wrap;
+  }
+
+  .btn-primary {
+    display: inline-block;
+    padding: 0.85rem 2rem;
+    background: var(--orange);
+    color: white;
+    text-decoration: none;
+    font-size: 0.875rem;
+    font-weight: 500;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    transition: background 0.2s;
+  }
+
+  .btn-primary:hover { background: #c96a2a; }
+
+  .btn-ghost {
+    display: inline-block;
+    padding: 0.85rem 2rem;
+    background: transparent;
+    color: white;
+    text-decoration: none;
+    font-size: 0.875rem;
+    font-weight: 500;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    border: 1.5px solid rgba(255,255,255,0.3);
+    transition: all 0.2s;
+  }
+
+  .btn-ghost:hover { background: white; color: var(--dark); }
+
+  footer {
+    background: var(--dark);
+    border-top: 1px solid rgba(255,255,255,0.08);
+    padding: 1.5rem 5%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  footer span { font-size: 0.8rem; color: rgba(255,255,255,0.3); }
+
+  @media (max-width: 600px) {
+    .principles-grid { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="index.html" class="nav-logo">Robert Lise</a>
+  <ul class="nav-links">
+    <li><a href="index.html#about">About</a></li>
+    <li><a href="index.html#portfolio">Portfolio</a></li>
+    <li><a href="index.html#experience">Experience</a></li>
+    <li><a href="index.html#contact">Contact</a></li>
+  </ul>
+</nav>
+
+<div class="case-hero">
+  <a href="index.html#portfolio" class="back-link">Back to Portfolio</a>
+  <p class="case-label">Sales Enablement</p>
+  <h1 class="case-title">Strategic Sales Battlecards</h1>
+  <p class="case-subtitle">A self-initiated portfolio project demonstrating competitive research, strategic positioning, and sales enablement design — built from scratch using fictional companies and scenarios.</p>
+  <div class="case-meta">
+    <div class="meta-item">
+      <span>Type</span>
+      <strong>Portfolio Project</strong>
+    </div>
+    <div class="meta-item">
+      <span>Tools</span>
+      <strong>Canva · Competitive Research · Instructional Design</strong>
+    </div>
+    <div class="meta-item">
+      <span>Demonstrates</span>
+      <strong>Sales Enablement · Content Design · Strategic Positioning</strong>
+    </div>
+  </div>
+</div>
+
+<div class="case-content">
+
+  <div class="case-section">
+    <p class="case-section-label">The Project</p>
+    <h2>Built From Scratch to Show I Could</h2>
+    <p>This was a self-initiated project. I created two fictional companies — <strong>Safe Haven Homes</strong> and <strong>Strongate Locks</strong> — along with realistic competitive scenarios, to demonstrate the full process behind building effective sales battlecards.</p>
+    <p>The goal wasn't to fill space in a portfolio. It was to prove I understood the discipline well enough to construct a realistic, usable example independently — from competitive research through final design.</p>
+    <div class="callout">
+      <p><strong>The real skill here:</strong> Knowing what information matters to a sales rep mid-conversation, and structuring it so they can find it in under 10 seconds.</p>
+    </div>
+  </div>
+
+  <hr class="divider">
+
+  <div class="case-section">
+    <p class="case-section-label">The Approach</p>
+    <h2>Research First, Design Second</h2>
+    <p>Each card was built through a structured process: defining the competitor's positioning, identifying their genuine strengths, surfacing their real weaknesses, and then — most importantly — translating all of it into specific talking points and rebuttals a rep could actually use.</p>
+    <p>The design decisions were equally deliberate. Layout, hierarchy, and language were all evaluated against one question: <strong>can a rep find what they need in under 10 seconds?</strong></p>
+
+    <div class="principles-grid">
+      <div class="principle-box">
+        <h4>Audience-Centered</h4>
+        <p>Structured for sales reps mid-conversation. Clarity and speed prioritized above comprehensiveness.</p>
+      </div>
+      <div class="principle-box">
+        <h4>Visual Hierarchy</h4>
+        <p>Key differentiators and rebuttals surfaced at a glance. Supporting detail available but never in the way.</p>
+      </div>
+      <div class="principle-box">
+        <h4>Strategic Positioning</h4>
+        <p>Each card frames strengths in direct contrast to the competitor — not generic claims, specific talking points.</p>
+      </div>
+      <div class="principle-box">
+        <h4>Field-Ready Format</h4>
+        <p>Designed to work on screen or printed. No scrolling required to find the key points.</p>
+      </div>
+    </div>
+  </div>
+
+  <hr class="divider">
+
+  <div class="case-section">
+    <p class="case-section-label">The Battlecards</p>
+    <h2>The Finished Work</h2>
+    <p>Two complete battlecards, each covering company overview, products, strengths, weaknesses, and a "How We Win" section with specific rebuttals for the most common competitive objections.</p>
+
+    <div class="battlecard-block">
+      <p class="battlecard-caption">Battlecard 01 — Safe Haven Homes</p>
+      <img src="Safe_Haven_Homes_Battlecard.png" alt="Safe Haven Homes Battlecard">
+    </div>
+
+    <div class="battlecard-block">
+      <p class="battlecard-caption">Battlecard 02 — Strongate Locks</p>
+      <img src="Strongate_Locks_Battlecard.png" alt="Strongate Locks Battlecard">
+    </div>
+  </div>
+
+</div>
+
+<div class="case-cta">
+  <h3>Want to see more?</h3>
+  <p>View the full portfolio or get in touch directly.</p>
+  <div class="cta-links">
+    <a href="index.html#portfolio" class="btn-primary">Back to Portfolio</a>
+    <a href="index.html#contact" class="btn-ghost">Get In Touch</a>
+  </div>
+</div>
+
+<footer>
+  <span>© 2026 Robert Lise</span>
+  <span>Hoboken, NJ · Open to Work</span>
+</footer>
+
+</body>
+</html>
