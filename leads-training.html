@@ -1,0 +1,460 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Leads Management Training — Robert Lise</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --charcoal: #545454;
+    --dark: #1a1a1a;
+    --orange: #E07A3A;
+    --light: #f7f5f2;
+    --white: #ffffff;
+    --mid: #888;
+    --border: #e8e4df;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: var(--light);
+    color: var(--dark);
+  }
+
+  /* NAV */
+  nav {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 100;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1.25rem 5%;
+    background: rgba(247, 245, 242, 0.92);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--border);
+  }
+
+  .nav-logo {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.2rem;
+    font-weight: 700;
+    color: var(--dark);
+    text-decoration: none;
+    letter-spacing: -0.02em;
+  }
+
+  .nav-links {
+    display: flex;
+    gap: 2.5rem;
+    list-style: none;
+  }
+
+  .nav-links a {
+    text-decoration: none;
+    color: var(--charcoal);
+    font-size: 0.875rem;
+    font-weight: 500;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    transition: color 0.2s;
+  }
+
+  .nav-links a:hover { color: var(--orange); }
+
+  /* HERO */
+  .case-hero {
+    padding: 10rem 5% 5rem;
+    background: var(--charcoal);
+    color: white;
+  }
+
+  .back-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 0.8rem;
+    font-weight: 500;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.5);
+    text-decoration: none;
+    margin-bottom: 2rem;
+    transition: color 0.2s;
+  }
+
+  .back-link:hover { color: var(--orange); }
+  .back-link::before { content: '←'; }
+
+  .case-label {
+    font-size: 0.7rem;
+    font-weight: 500;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--orange);
+    margin-bottom: 1rem;
+  }
+
+  .case-title {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(2.5rem, 5vw, 4rem);
+    font-weight: 900;
+    line-height: 1.05;
+    letter-spacing: -0.03em;
+    color: white;
+    margin-bottom: 1.5rem;
+    max-width: 800px;
+  }
+
+  .case-subtitle {
+    font-size: 1.1rem;
+    color: rgba(255,255,255,0.6);
+    max-width: 600px;
+    line-height: 1.7;
+    font-weight: 300;
+  }
+
+  .case-meta {
+    display: flex;
+    gap: 3rem;
+    margin-top: 3rem;
+    padding-top: 3rem;
+    border-top: 1px solid rgba(255,255,255,0.15);
+  }
+
+  .meta-item span {
+    display: block;
+    font-size: 0.7rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.4);
+    margin-bottom: 0.3rem;
+  }
+
+  .meta-item strong {
+    font-size: 0.95rem;
+    color: white;
+    font-weight: 400;
+  }
+
+  /* CONTENT */
+  .case-content {
+    max-width: 780px;
+    margin: 0 auto;
+    padding: 5rem 5%;
+  }
+
+  .case-section {
+    margin-bottom: 4rem;
+  }
+
+  .case-section-label {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.75rem;
+    font-size: 0.7rem;
+    font-weight: 500;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--orange);
+    margin-bottom: 1.25rem;
+  }
+
+  .case-section-label::before {
+    content: '';
+    display: block;
+    width: 2rem;
+    height: 1.5px;
+    background: var(--orange);
+  }
+
+  .case-section h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.8rem;
+    font-weight: 700;
+    color: var(--dark);
+    margin-bottom: 1.25rem;
+    line-height: 1.2;
+  }
+
+  .case-section p {
+    font-size: 1.05rem;
+    line-height: 1.8;
+    color: #444;
+    margin-bottom: 1.25rem;
+    font-weight: 300;
+  }
+
+  .case-section p strong {
+    color: var(--dark);
+    font-weight: 500;
+  }
+
+  /* CALLOUT BOX */
+  .callout {
+    background: var(--white);
+    border-left: 4px solid var(--orange);
+    padding: 1.75rem 2rem;
+    margin: 2rem 0;
+  }
+
+  .callout p {
+    margin: 0;
+    font-size: 1rem;
+    color: var(--charcoal);
+  }
+
+  /* RESULTS GRID */
+  .results-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1rem;
+    margin: 2rem 0;
+  }
+
+  .result-box {
+    background: var(--white);
+    padding: 1.5rem;
+    border-top: 3px solid var(--orange);
+    text-align: center;
+  }
+
+  .result-box strong {
+    display: block;
+    font-family: 'Playfair Display', serif;
+    font-size: 2rem;
+    color: var(--dark);
+    line-height: 1;
+    margin-bottom: 0.4rem;
+  }
+
+  .result-box span {
+    font-size: 0.75rem;
+    color: var(--mid);
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+  }
+
+  /* DIVIDER */
+  .divider {
+    border: none;
+    border-top: 1px solid var(--border);
+    margin: 3rem 0;
+  }
+
+  /* CTA */
+  .case-cta {
+    background: var(--charcoal);
+    padding: 4rem 5%;
+    text-align: center;
+  }
+
+  .case-cta h3 {
+    font-family: 'Playfair Display', serif;
+    font-size: 2rem;
+    color: white;
+    margin-bottom: 1rem;
+  }
+
+  .case-cta p {
+    color: rgba(255,255,255,0.5);
+    margin-bottom: 2rem;
+    font-weight: 300;
+  }
+
+  .cta-links {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    flex-wrap: wrap;
+  }
+
+  .btn-primary {
+    display: inline-block;
+    padding: 0.85rem 2rem;
+    background: var(--orange);
+    color: white;
+    text-decoration: none;
+    font-size: 0.875rem;
+    font-weight: 500;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    transition: background 0.2s;
+  }
+
+  .btn-primary:hover { background: #c96a2a; }
+
+  .btn-ghost {
+    display: inline-block;
+    padding: 0.85rem 2rem;
+    background: transparent;
+    color: white;
+    text-decoration: none;
+    font-size: 0.875rem;
+    font-weight: 500;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    border: 1.5px solid rgba(255,255,255,0.3);
+    transition: all 0.2s;
+  }
+
+  .btn-ghost:hover {
+    background: white;
+    color: var(--dark);
+  }
+
+  /* FOOTER */
+  footer {
+    background: var(--dark);
+    border-top: 1px solid rgba(255,255,255,0.08);
+    padding: 1.5rem 5%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  footer span { font-size: 0.8rem; color: rgba(255,255,255,0.3); }
+
+  /* STORYLINE EMBED BUTTON */
+  .experience-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.75rem;
+    padding: 1rem 2rem;
+    background: var(--dark);
+    color: white;
+    text-decoration: none;
+    font-size: 0.875rem;
+    font-weight: 500;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    margin-top: 1.5rem;
+    transition: background 0.2s;
+  }
+
+  .experience-btn:hover { background: var(--orange); }
+  .experience-btn::after { content: '→'; }
+
+  @media (max-width: 600px) {
+    .case-meta { flex-wrap: wrap; gap: 1.5rem; }
+    .results-grid { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="index.html" class="nav-logo">Robert Lise</a>
+  <ul class="nav-links">
+    <li><a href="index.html#about">About</a></li>
+    <li><a href="index.html#portfolio">Portfolio</a></li>
+    <li><a href="index.html#experience">Experience</a></li>
+    <li><a href="index.html#contact">Contact</a></li>
+  </ul>
+</nav>
+
+<div class="case-hero">
+  <a href="index.html#portfolio" class="back-link"> Back to Portfolio</a>
+  <p class="case-label">Training Program Design</p>
+  <h1 class="case-title">Leads Management Training</h1>
+  <p class="case-subtitle">Increasing sales conversions through a full team retraining — identifying the performance gap, building the solution, and driving measurable results.</p>
+  <div class="case-meta">
+    <div class="meta-item">
+      <span>Company</span>
+      <strong>FlatRate Moving</strong>
+    </div>
+    <div class="meta-item">
+      <span>Role</span>
+      <strong>Leads Department Manager</strong>
+    </div>
+    <div class="meta-item">
+      <span>Tools</span>
+      <strong>Articulate Storyline · Canva · PowerPoint</strong>
+    </div>
+    <div class="meta-item">
+      <span>Outcome</span>
+      <strong>10–20% YOY Improvement</strong>
+    </div>
+  </div>
+</div>
+
+<div class="case-content">
+
+  <div class="case-section">
+    <p class="case-section-label">The Challenge</p>
+    <h2>A Performance Gap Hidden in the Handoff</h2>
+    <p>The sales teams worked exclusively with inbound leads — no cold outreach, no prospecting. Every lead had to be filtered through a Leads Management team responsible for assigning each one to the right sales rep. When conversion rates dipped, the root cause wasn't the sales team.</p>
+    <p>The Leads Management team was routing leads incorrectly — mismatching lead types to the wrong reps, creating friction before a single sales conversation even started. On top of that, the onsite sales team reported that their schedules were generating excessive travel time between appointments, leaving no bandwidth for follow-up or inbound calls from active prospects.</p>
+    <div class="callout">
+      <p><strong>Core insight:</strong> Conversion problems aren't always a sales problem. In this case, the bottleneck was upstream — in how leads were being sorted and assigned before they ever reached a rep.</p>
+    </div>
+  </div>
+
+  <hr class="divider">
+
+  <div class="case-section">
+    <p class="case-section-label">The Solution</p>
+    <h2>Tighter Policies, Clearer Routing</h2>
+    <p>The fix required restructuring the lead assignment logic and retraining the team on the new policies. New routing rules were built around two key variables:</p>
+    <p><strong>Move size</strong> determined which team got the lead. Smaller moves (studios, 1–2 bedroom apartments) went to the inside sales team. Larger, more complex moves went to the onsite team.</p>
+    <p><strong>Rep experience level</strong> determined which rep within each team got the lead. More experienced reps handled long-distance and complex moves. Newer reps handled local, straightforward jobs.</p>
+    <p>To solve the travel time problem for the onsite team, a geographic constraint was added: each onsite rep could only be scheduled within a single NYC borough per day, eliminating cross-borough travel and opening time for follow-up and inbound calls.</p>
+  </div>
+
+  <hr class="divider">
+
+  <div class="case-section">
+    <p class="case-section-label">The Training</p>
+    <h2>From Policy to Practice</h2>
+    <p>New policies only work if the people executing them understand them. The Leads Management team needed to be fully retrained — not just informed — on the new routing logic.</p>
+    <p>In its original form, the training was delivered through PowerPoint and in-person instruction. To demonstrate the same content with modern instructional design tools, I rebuilt the introductory module in <strong>Articulate Storyline</strong> — creating an interactive e-learning experience where learners receive the new policies and practice applying them in real scenarios as they go.</p>
+    <p>The Storyline version uses branching scenarios and immediate feedback to reinforce decision-making, rather than passive slide-reading. It's designed to be completed independently, making it scalable for onboarding future team members without requiring live facilitation every time.</p>
+
+    <a href="https://storage.googleapis.com/robertliseportfolio/Alex%20Moving%202.0/story.html" target="_blank" class="experience-btn">Experience the Course</a>
+  </div>
+
+  <hr class="divider">
+
+  <div class="case-section">
+    <p class="case-section-label">The Results</p>
+    <h2>Measurable, Sustained Improvement</h2>
+    <div class="results-grid">
+      <div class="result-box">
+        <strong>10–20%</strong>
+        <span>YOY Team Growth</span>
+      </div>
+      <div class="result-box">
+        <strong>95%</strong>
+        <span>Customer Satisfaction</span>
+      </div>
+      <div class="result-box">
+        <strong>20%</strong>
+        <span>Increase in Qualified Leads</span>
+      </div>
+    </div>
+    <p>Beyond the numbers, the retraining created a repeatable system. New hires could be onboarded to the same policies using the same materials, reducing ramp time and maintaining consistency as the team grew.</p>
+  </div>
+
+</div>
+
+<div class="case-cta">
+  <h3>Want to see more?</h3>
+  <p>View the full portfolio or get in touch directly.</p>
+  <div class="cta-links">
+    <a href="index.html#portfolio" class="btn-primary">Back to Portfolio</a>
+    <a href="index.html#contact" class="btn-ghost">Get In Touch</a>
+  </div>
+</div>
+
+<footer>
+  <span>© 2026 Robert Lise</span>
+  <span>Hoboken, NJ · Open to Work</span>
+</footer>
+
+</body>
+</html>
