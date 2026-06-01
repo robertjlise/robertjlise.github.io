@@ -1,0 +1,919 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Robert Lise — Training, Onboarding & Enablement</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --charcoal: #545454;
+    --dark: #1a1a1a;
+    --orange: #E07A3A;
+    --orange-light: #f5a673;
+    --light: #f7f5f2;
+    --white: #ffffff;
+    --mid: #888;
+    --border: #e8e4df;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: var(--light);
+    color: var(--dark);
+    overflow-x: hidden;
+  }
+
+  /* NAV */
+  nav {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 100;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1.25rem 5%;
+    background: rgba(247, 245, 242, 0.92);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--border);
+  }
+
+  .nav-logo {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.2rem;
+    font-weight: 700;
+    color: var(--dark);
+    text-decoration: none;
+    letter-spacing: -0.02em;
+  }
+
+  .nav-links {
+    display: flex;
+    gap: 2.5rem;
+    list-style: none;
+  }
+
+  .nav-links a {
+    text-decoration: none;
+    color: var(--charcoal);
+    font-size: 0.875rem;
+    font-weight: 500;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    transition: color 0.2s;
+  }
+
+  .nav-links a:hover { color: var(--orange); }
+
+  /* HERO */
+  .hero {
+    min-height: 100vh;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    align-items: center;
+    padding: 8rem 5% 5rem;
+    gap: 4rem;
+    position: relative;
+  }
+
+  .hero::before {
+    content: '';
+    position: absolute;
+    top: 0; right: 0;
+    width: 45%;
+    height: 100%;
+    background: var(--charcoal);
+    z-index: 0;
+  }
+
+  .hero-text {
+    position: relative;
+    z-index: 1;
+  }
+
+  .hero-eyebrow {
+    font-size: 0.75rem;
+    font-weight: 500;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--orange);
+    margin-bottom: 1.5rem;
+  }
+
+  .hero-title {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(2.8rem, 5vw, 4.5rem);
+    font-weight: 900;
+    line-height: 1.05;
+    letter-spacing: -0.03em;
+    color: var(--dark);
+    margin-bottom: 1.5rem;
+  }
+
+  .hero-title em {
+    font-style: normal;
+    color: var(--orange);
+  }
+
+  .hero-sub {
+    font-size: 1.05rem;
+    color: var(--charcoal);
+    line-height: 1.7;
+    max-width: 480px;
+    margin-bottom: 2.5rem;
+    font-weight: 300;
+  }
+
+  .hero-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.6rem;
+    margin-bottom: 2.5rem;
+  }
+
+  .tag {
+    font-size: 0.75rem;
+    font-weight: 500;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    padding: 0.4rem 0.9rem;
+    border: 1.5px solid var(--dark);
+    border-radius: 2px;
+    color: var(--dark);
+  }
+
+  .hero-cta {
+    display: flex;
+    gap: 1rem;
+    align-items: center;
+  }
+
+  .btn-primary {
+    display: inline-block;
+    padding: 0.85rem 2rem;
+    background: var(--orange);
+    color: white;
+    text-decoration: none;
+    font-size: 0.875rem;
+    font-weight: 500;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    transition: background 0.2s, transform 0.2s;
+  }
+
+  .btn-primary:hover {
+    background: #c96a2a;
+    transform: translateY(-1px);
+  }
+
+  .btn-secondary {
+    display: inline-block;
+    padding: 0.85rem 2rem;
+    background: transparent;
+    color: var(--dark);
+    text-decoration: none;
+    font-size: 0.875rem;
+    font-weight: 500;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    border: 1.5px solid var(--dark);
+    transition: all 0.2s;
+  }
+
+  .btn-secondary:hover {
+    background: var(--dark);
+    color: white;
+  }
+
+  .hero-image-block {
+    position: relative;
+    z-index: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .hero-photo-frame {
+    position: relative;
+    width: 340px;
+    height: 400px;
+  }
+
+  .hero-photo-frame::before {
+    content: '';
+    position: absolute;
+    top: -12px;
+    left: -12px;
+    right: 12px;
+    bottom: 12px;
+    border: 2px solid var(--orange);
+    z-index: 0;
+  }
+
+  .hero-photo-frame img {
+    position: relative;
+    z-index: 1;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: top;
+    filter: grayscale(20%);
+  }
+
+  .hero-photo-placeholder {
+    position: relative;
+    z-index: 1;
+    width: 100%;
+    height: 100%;
+    background: #888;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+
+  .hero-photo-placeholder span {
+    color: rgba(255,255,255,0.6);
+    font-size: 0.75rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+  }
+
+  .hero-credentials {
+    position: absolute;
+    bottom: -20px;
+    right: -20px;
+    background: var(--orange);
+    color: white;
+    padding: 1.2rem 1.5rem;
+    z-index: 2;
+  }
+
+  .hero-credentials strong {
+    display: block;
+    font-family: 'Playfair Display', serif;
+    font-size: 2rem;
+    line-height: 1;
+  }
+
+  .hero-credentials span {
+    font-size: 0.7rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    opacity: 0.85;
+  }
+
+  /* SECTION SHARED */
+  section {
+    padding: 6rem 5%;
+  }
+
+  .section-label {
+    font-size: 0.7rem;
+    font-weight: 500;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--orange);
+    margin-bottom: 1rem;
+  }
+
+  .section-title {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(2rem, 3.5vw, 3rem);
+    font-weight: 700;
+    letter-spacing: -0.02em;
+    line-height: 1.15;
+    color: var(--dark);
+    margin-bottom: 1.5rem;
+  }
+
+  /* ABOUT */
+  #about {
+    background: var(--white);
+    display: grid;
+    grid-template-columns: 1fr 1.4fr;
+    gap: 6rem;
+    align-items: start;
+  }
+
+  .about-left {}
+
+  .about-stats {
+    margin-top: 3rem;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.5rem;
+  }
+
+  .stat-box {
+    padding: 1.5rem;
+    background: var(--light);
+    border-left: 3px solid var(--orange);
+  }
+
+  .stat-box strong {
+    display: block;
+    font-family: 'Playfair Display', serif;
+    font-size: 2.2rem;
+    color: var(--dark);
+    line-height: 1;
+    margin-bottom: 0.3rem;
+  }
+
+  .stat-box span {
+    font-size: 0.75rem;
+    color: var(--mid);
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+  }
+
+  .about-right p {
+    font-size: 1.05rem;
+    line-height: 1.8;
+    color: #444;
+    margin-bottom: 1.25rem;
+    font-weight: 300;
+  }
+
+  .about-right p strong {
+    color: var(--dark);
+    font-weight: 500;
+  }
+
+  .about-right .closing-line {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.3rem;
+    color: var(--dark);
+    font-style: italic;
+    border-left: 3px solid var(--orange);
+    padding-left: 1.25rem;
+    margin-top: 2rem;
+    line-height: 1.5;
+  }
+
+  /* PORTFOLIO */
+  #portfolio {
+    background: var(--light);
+  }
+
+  .portfolio-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    margin-bottom: 3.5rem;
+  }
+
+  .portfolio-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.5rem;
+  }
+
+  .portfolio-card {
+    background: var(--white);
+    display: flex;
+    flex-direction: column;
+    transition: transform 0.25s, box-shadow 0.25s;
+    text-decoration: none;
+    color: inherit;
+  }
+
+  .portfolio-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 20px 50px rgba(0,0,0,0.1);
+  }
+
+  .card-image {
+    height: 200px;
+    background: var(--charcoal);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    position: relative;
+  }
+
+  .card-image-storyline {
+    background: linear-gradient(135deg, #1a1a1a 0%, #3a3a3a 100%);
+  }
+
+  .card-image-leads {
+    background: linear-gradient(135deg, #2d3a4a 0%, #3d5a6a 100%);
+  }
+
+  .card-image-battlecards {
+    background: linear-gradient(135deg, #3a2a1a 0%, #6a4a2a 100%);
+  }
+
+  .card-image-icon {
+    font-size: 3rem;
+    opacity: 0.4;
+  }
+
+  .card-label {
+    position: absolute;
+    top: 1rem;
+    left: 1rem;
+    font-size: 0.65rem;
+    font-weight: 500;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    background: var(--orange);
+    color: white;
+    padding: 0.3rem 0.7rem;
+  }
+
+  .card-body {
+    padding: 1.75rem;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .card-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.2rem;
+    font-weight: 700;
+    color: var(--dark);
+    margin-bottom: 0.75rem;
+    line-height: 1.3;
+  }
+
+  .card-desc {
+    font-size: 0.9rem;
+    color: #666;
+    line-height: 1.65;
+    flex: 1;
+    font-weight: 300;
+  }
+
+  .card-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    margin-top: 1.5rem;
+    font-size: 0.8rem;
+    font-weight: 500;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--orange);
+    text-decoration: none;
+  }
+
+  .card-link::after {
+    content: '→';
+    transition: transform 0.2s;
+  }
+
+  .portfolio-card:hover .card-link::after {
+    transform: translateX(4px);
+  }
+
+  /* EXPERIENCE */
+  #experience {
+    background: var(--charcoal);
+    color: var(--white);
+  }
+
+  #experience .section-title {
+    color: var(--white);
+  }
+
+  .timeline {
+    margin-top: 3rem;
+    position: relative;
+  }
+
+  .timeline::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    width: 1px;
+    background: rgba(255,255,255,0.15);
+  }
+
+  .timeline-item {
+    padding-left: 2.5rem;
+    padding-bottom: 3rem;
+    position: relative;
+  }
+
+  .timeline-item::before {
+    content: '';
+    position: absolute;
+    left: -4px;
+    top: 6px;
+    width: 9px;
+    height: 9px;
+    background: var(--orange);
+    border-radius: 50%;
+  }
+
+  .timeline-item:last-child { padding-bottom: 0; }
+
+  .timeline-meta {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin-bottom: 0.4rem;
+  }
+
+  .timeline-date {
+    font-size: 0.7rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--orange);
+    font-weight: 500;
+  }
+
+  .timeline-company {
+    font-size: 0.7rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.4);
+  }
+
+  .timeline-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.3rem;
+    font-weight: 700;
+    color: white;
+    margin-bottom: 0.75rem;
+  }
+
+  .timeline-desc {
+    font-size: 0.9rem;
+    color: rgba(255,255,255,0.6);
+    line-height: 1.7;
+    max-width: 640px;
+    font-weight: 300;
+  }
+
+  /* SKILLS */
+  #skills {
+    background: var(--white);
+  }
+
+  .skills-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1rem;
+    margin-top: 3rem;
+  }
+
+  .skill-item {
+    padding: 1.25rem 1.5rem;
+    background: var(--light);
+    border-top: 2px solid transparent;
+    font-size: 0.875rem;
+    font-weight: 400;
+    color: var(--charcoal);
+    transition: border-color 0.2s, background 0.2s;
+  }
+
+  .skill-item:hover {
+    border-top-color: var(--orange);
+    background: white;
+  }
+
+  /* CONTACT */
+  #contact {
+    background: var(--dark);
+    text-align: center;
+    padding: 6rem 5%;
+  }
+
+  #contact .section-label { text-align: center; }
+
+  #contact .section-title {
+    color: white;
+    text-align: center;
+    max-width: 600px;
+    margin: 0 auto 1rem;
+  }
+
+  #contact p {
+    color: rgba(255,255,255,0.5);
+    font-size: 1rem;
+    margin-bottom: 2.5rem;
+    font-weight: 300;
+  }
+
+  .contact-links {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    flex-wrap: wrap;
+  }
+
+  /* FOOTER */
+  footer {
+    background: var(--dark);
+    border-top: 1px solid rgba(255,255,255,0.08);
+    padding: 1.5rem 5%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  footer span {
+    font-size: 0.8rem;
+    color: rgba(255,255,255,0.3);
+  }
+
+  /* ANIMATIONS */
+  .fade-up {
+    opacity: 0;
+    transform: translateY(24px);
+    transition: opacity 0.6s ease, transform 0.6s ease;
+  }
+
+  .fade-up.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  /* RESPONSIVE */
+  @media (max-width: 900px) {
+    .hero { grid-template-columns: 1fr; }
+    .hero::before { display: none; }
+    .hero-photo-frame { width: 260px; height: 300px; margin: 0 auto; }
+    #about { grid-template-columns: 1fr; gap: 3rem; }
+    .portfolio-grid { grid-template-columns: 1fr; }
+    .skills-grid { grid-template-columns: repeat(2, 1fr); }
+    .nav-links { gap: 1.5rem; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a href="#home" class="nav-logo">Robert Lise</a>
+  <ul class="nav-links">
+    <li><a href="#about">About</a></li>
+    <li><a href="#portfolio">Portfolio</a></li>
+    <li><a href="#experience">Experience</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section class="hero" id="home">
+  <div class="hero-text fade-up">
+    <p class="hero-eyebrow">Training · Onboarding · Enablement · Customer Success</p>
+    <h1 class="hero-title">Hi, I'm<br>Robert Lise.<br>I build the systems<br>that help people <em>succeed.</em></h1>
+    <p class="hero-sub">Training and enablement professional with 15 years of experience building the programs, processes, and materials that get people up to speed — and keep them there.</p>
+    <div class="hero-tags">
+      <span class="tag">Onboarding</span>
+      <span class="tag">Training</span>
+      <span class="tag">Enablement</span>
+      <span class="tag">Instructional Design</span>
+      <span class="tag">Customer Success</span>
+    </div>
+    <div class="hero-cta">
+      <a href="#portfolio" class="btn-primary">View My Portfolio</a>
+      <a href="#about" class="btn-secondary">About Me</a>
+    </div>
+  </div>
+
+  <div class="hero-image-block fade-up" style="transition-delay: 0.2s">
+    <div class="hero-photo-frame">
+      <!-- Replace src with your actual photo URL -->
+      <img src="https://lh3.googleusercontent.com/sitesv/AA5AbUB24LRaBkKSZXsHen3RcC1fBoKNzRJV24zo_sczfSshuy7NJaK_QH3Sb7wKxh0G6pgGWLQrKhCBnRA2pCivDqCMz4N4QwQBowyvwsxp40fDcnZQO22aDERmiZmFQliW9GCayhzHSiOshtRJYmc6_S5z-VVgqduj5lxyFdYFbMn6-vqIS7nAl50pY1cQVFNmTSN-3wSUlW2vQOJme1SEGgGkvy1c9IstzXfoqVk=w1280" alt="Robert Lise" onerror="this.parentElement.innerHTML='<div class=\'hero-photo-placeholder\'><span>Photo</span><span>robertlise.com</span></div>'">
+      <div class="hero-credentials">
+        <strong>15</strong>
+        <span>Years Experience</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section id="about">
+  <div class="about-left fade-up">
+    <p class="section-label">About Me</p>
+    <h2 class="section-title">At my best when there's no playbook yet.</h2>
+    <div class="about-stats">
+      <div class="stat-box">
+        <strong>600+</strong>
+        <span>Clients Onboarded</span>
+      </div>
+      <div class="stat-box">
+        <strong>15yr</strong>
+        <span>Experience</span>
+      </div>
+      <div class="stat-box">
+        <strong>10–20%</strong>
+        <span>YOY Team Growth</span>
+      </div>
+      <div class="stat-box">
+        <strong>95%</strong>
+        <span>Customer Satisfaction</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="about-right fade-up" style="transition-delay: 0.15s">
+    <p>I build the systems that help people succeed — <strong>onboarding programs, training curricula, client education,</strong> and the processes that make adoption actually stick.</p>
+
+    <p>Over 15 years I've done this across contact centers, marketplace platforms, and enterprise client portfolios. At <strong>FlatRate Moving</strong> I wrote the training manual, built the new-hire program from scratch, and ran a 10–12 person contact center team. At <strong>Unpakt</strong> I owned onboarding and ongoing support for 600+ accounts, developed the full client training curriculum, and worked directly with developers on platform improvements.</p>
+
+    <p>I'm currently co-founding <strong>The Repair App</strong>, a two-sided marketplace, where I've built the entire enablement function from the ground up — onboarding workflows, UX flows, vendor acquisition, and all business-facing training and communication materials.</p>
+
+    <p>I also have hands-on experience in instructional design, including a self-taught <strong>Articulate Storyline</strong> portfolio completed in 30 days, with working e-learning modules available in my portfolio.</p>
+
+    <p class="closing-line">At my best when there's a real problem to solve and people who need help solving it.</p>
+
+    <br>
+    <a href="#portfolio" class="btn-primary" style="margin-top:1rem">View My Work</a>
+  </div>
+</section>
+
+<!-- PORTFOLIO -->
+<section id="portfolio">
+  <div class="portfolio-header">
+    <div>
+      <p class="section-label">Portfolio</p>
+      <h2 class="section-title">Selected Work</h2>
+    </div>
+  </div>
+
+  <div class="portfolio-grid">
+
+    <!-- Card 1: Storyline -->
+    <div class="portfolio-card fade-up">
+      <div class="card-image card-image-storyline">
+        <div class="card-image-icon">🎓</div>
+        <span class="card-label">Articulate Storyline</span>
+      </div>
+      <div class="card-body">
+        <h3 class="card-title">Interactive Sales Training Module</h3>
+        <p class="card-desc">A fully interactive e-learning course built in Articulate Storyline. Teaches sales lead routing policies through scenario-based practice — self-taught and built from scratch in 30 days.</p>
+        <a href="https://storage.googleapis.com/robertliseportfolio/Alex%20Moving%202.0/story.html" target="_blank" class="card-link">Experience the Course</a>
+      </div>
+    </div>
+
+    <!-- Card 2: Leads Management -->
+    <div class="portfolio-card fade-up" style="transition-delay:0.1s">
+      <div class="card-image card-image-leads">
+        <div class="card-image-icon">📋</div>
+        <span class="card-label">Training Program</span>
+      </div>
+      <div class="card-body">
+        <h3 class="card-title">Leads Management Training</h3>
+        <p class="card-desc">Designed and delivered a full retraining program for a contact center leads team. Identified the performance gap, built the solution, and drove measurable improvement in conversion rates.</p>
+        <a href="#leads-detail" class="card-link">View Case Study</a>
+      </div>
+    </div>
+
+    <!-- Card 3: Battlecards -->
+    <div class="portfolio-card fade-up" style="transition-delay:0.2s">
+      <div class="card-image card-image-battlecards">
+        <div class="card-image-icon">⚡</div>
+        <span class="card-label">Sales Enablement</span>
+      </div>
+      <div class="card-body">
+        <h3 class="card-title">Strategic Sales Battlecards</h3>
+        <p class="card-desc">Built to support a B2B sales team, these competitor battlecards translate market research into fast, actionable tools — structured for clarity and designed for use in the field.</p>
+        <a href="#battlecards-detail" class="card-link">View Project</a>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- EXPERIENCE -->
+<section id="experience">
+  <p class="section-label">Experience</p>
+  <h2 class="section-title">15 Years of Building</h2>
+
+  <div class="timeline">
+
+    <div class="timeline-item fade-up">
+      <div class="timeline-meta">
+        <span class="timeline-date">2025 – Present</span>
+        <span class="timeline-company">The Repair App</span>
+      </div>
+      <h3 class="timeline-title">Co-Founder / Head of Growth</h3>
+      <p class="timeline-desc">Building the entire enablement function from scratch for a two-sided marketplace — onboarding workflows, UX flows, vendor acquisition pipeline, and all business-facing training and communication materials.</p>
+    </div>
+
+    <div class="timeline-item fade-up">
+      <div class="timeline-meta">
+        <span class="timeline-date">2024 – 2025</span>
+        <span class="timeline-company">Independent</span>
+      </div>
+      <h3 class="timeline-title">Freelance AI Training Specialist</h3>
+      <p class="timeline-desc">Evaluated AI model outputs for quality and accuracy, wrote and tested prompts, documented edge cases, and reviewed contributor work across multiple concurrent projects.</p>
+    </div>
+
+    <div class="timeline-item fade-up">
+      <div class="timeline-meta">
+        <span class="timeline-date">2021 – 2023</span>
+        <span class="timeline-company">Customer Management Practice</span>
+      </div>
+      <h3 class="timeline-title">Senior Account Executive</h3>
+      <p class="timeline-desc">Managed a mixed SMB and Enterprise client portfolio. Standardized onboarding and communication workflows across the portfolio using CRM tools. Ran structured business reviews to identify adoption gaps.</p>
+    </div>
+
+    <div class="timeline-item fade-up">
+      <div class="timeline-meta">
+        <span class="timeline-date">2018 – 2020</span>
+        <span class="timeline-company">GDS Group</span>
+      </div>
+      <h3 class="timeline-title">Director of Strategic Partnerships</h3>
+      <p class="timeline-desc">Managed the full client lifecycle from outreach through post-event account management, achieving 100% retention. Onboarded and mentored new hires; became a go-to resource for CRM adoption and process questions.</p>
+    </div>
+
+    <div class="timeline-item fade-up">
+      <div class="timeline-meta">
+        <span class="timeline-date">2015 – 2018</span>
+        <span class="timeline-company">Unpakt</span>
+      </div>
+      <h3 class="timeline-title">Client Onboarding & Success Manager</h3>
+      <p class="timeline-desc">Owned onboarding and ongoing support for 600+ accounts on a marketplace platform. Built and delivered the full client training curriculum including live workshops, on-demand webinars, and reference documentation.</p>
+    </div>
+
+    <div class="timeline-item fade-up">
+      <div class="timeline-meta">
+        <span class="timeline-date">2011 – 2015</span>
+        <span class="timeline-company">FlatRate Moving</span>
+      </div>
+      <h3 class="timeline-title">Leads Department Manager</h3>
+      <p class="timeline-desc">Built and owned the new-hire onboarding program — wrote the training manuals, designed onboarding modules, and ran skills workshops. Advanced from rep to manager in under two years. Drove 10–20% YOY improvement across all team metrics.</p>
+    </div>
+
+  </div>
+</section>
+
+<!-- SKILLS -->
+<section id="skills">
+  <p class="section-label">Core Skills</p>
+  <h2 class="section-title">What I Bring</h2>
+
+  <div class="skills-grid">
+    <div class="skill-item">Training Program Design</div>
+    <div class="skill-item">New Hire Onboarding</div>
+    <div class="skill-item">Client Onboarding & Implementation</div>
+    <div class="skill-item">Enablement Strategy</div>
+    <div class="skill-item">Instructional Design</div>
+    <div class="skill-item">Articulate Storyline</div>
+    <div class="skill-item">Curriculum Development</div>
+    <div class="skill-item">Customer Success</div>
+    <div class="skill-item">Process Documentation</div>
+    <div class="skill-item">User Journey Mapping</div>
+    <div class="skill-item">Workshop Facilitation</div>
+    <div class="skill-item">Account Management</div>
+    <div class="skill-item">Team Leadership & Coaching</div>
+    <div class="skill-item">CRM Tools (Salesforce, HubSpot)</div>
+    <div class="skill-item">Performance Feedback</div>
+    <div class="skill-item">Cross-functional Collaboration</div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact">
+  <p class="section-label">Get In Touch</p>
+  <h2 class="section-title">Let's work together.</h2>
+  <p>Open to Training & Enablement, Onboarding, and Customer Success roles at growth-stage companies in the NYC/NJ area.</p>
+  <div class="contact-links">
+    <a href="mailto:RobertJLise@gmail.com" class="btn-primary">RobertJLise@gmail.com</a>
+    <a href="https://www.linkedin.com/in/robert-lise-1175b385/" target="_blank" class="btn-secondary" style="color:white; border-color:rgba(255,255,255,0.3)">LinkedIn Profile</a>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <span>© 2026 Robert Lise</span>
+  <span>Hoboken, NJ · Open to Work</span>
+</footer>
+
+<script>
+  // Fade-up on scroll
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(el => {
+      if (el.isIntersecting) {
+        el.target.classList.add('visible');
+      }
+    });
+  }, { threshold: 0.1 });
+
+  document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
+
+  // Trigger hero immediately
+  setTimeout(() => {
+    document.querySelectorAll('.hero .fade-up').forEach(el => el.classList.add('visible'));
+  }, 100);
+</script>
+
+</body>
+</html>
