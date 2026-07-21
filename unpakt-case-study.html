@@ -1,0 +1,548 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Unpakt Turnaround — Robert Lise</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --charcoal: #545454;
+    --dark: #1a1a1a;
+    --orange: #E07A3A;
+    --light: #f7f5f2;
+    --white: #ffffff;
+    --mid: #888;
+    --border: #e8e4df;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: var(--light);
+    color: var(--dark);
+  }
+
+  /* NAV */
+  nav {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 100;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1.25rem 5%;
+    background: rgba(247, 245, 242, 0.92);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--border);
+  }
+
+  .nav-logo {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.2rem;
+    font-weight: 700;
+    color: var(--dark);
+    text-decoration: none;
+    letter-spacing: -0.02em;
+  }
+
+  .nav-links {
+    display: flex;
+    gap: 2.5rem;
+    list-style: none;
+  }
+
+  .nav-links a {
+    text-decoration: none;
+    color: var(--charcoal);
+    font-size: 0.875rem;
+    font-weight: 500;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    transition: color 0.2s;
+  }
+
+  .nav-links a:hover { color: var(--orange); }
+
+  /* HERO */
+  .case-hero {
+    padding: 10rem 5% 4rem;
+    background: var(--charcoal);
+    color: white;
+  }
+
+  .back-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 0.8rem;
+    font-weight: 500;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.5);
+    text-decoration: none;
+    margin-bottom: 2rem;
+    transition: color 0.2s;
+  }
+
+  .back-link:hover { color: var(--orange); }
+  .back-link::before { content: '←'; }
+
+  .case-label {
+    font-size: 0.7rem;
+    font-weight: 500;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--orange);
+    margin-bottom: 1rem;
+  }
+
+  .case-title {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(2.2rem, 4.5vw, 3.6rem);
+    font-weight: 900;
+    line-height: 1.1;
+    letter-spacing: -0.03em;
+    color: white;
+    margin-bottom: 1.5rem;
+    max-width: 800px;
+  }
+
+  .case-subtitle {
+    font-size: 1.1rem;
+    color: rgba(255,255,255,0.6);
+    max-width: 600px;
+    line-height: 1.7;
+    font-weight: 300;
+  }
+
+  .case-meta {
+    display: flex;
+    gap: 3rem;
+    margin-top: 3rem;
+    padding-top: 3rem;
+    border-top: 1px solid rgba(255,255,255,0.15);
+  }
+
+  .meta-item span {
+    display: block;
+    font-size: 0.7rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.4);
+    margin-bottom: 0.3rem;
+  }
+
+  .meta-item strong {
+    font-size: 0.95rem;
+    color: white;
+    font-weight: 400;
+  }
+
+  /* STAT STRIP */
+  .stat-strip {
+    max-width: 780px;
+    margin: 0 auto;
+    padding: 3rem 5% 0;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1rem;
+  }
+
+  .stat-box {
+    background: var(--white);
+    padding: 1.5rem;
+    border-top: 3px solid var(--orange);
+    text-align: center;
+  }
+
+  .stat-box strong {
+    display: block;
+    font-family: 'Playfair Display', serif;
+    font-size: 1.9rem;
+    color: var(--dark);
+    line-height: 1;
+    margin-bottom: 0.4rem;
+  }
+
+  .stat-box span {
+    font-size: 0.75rem;
+    color: var(--mid);
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+  }
+
+  /* CONTENT */
+  .case-content {
+    max-width: 780px;
+    margin: 0 auto;
+    padding: 4rem 5% 5rem;
+  }
+
+  .case-section {
+    margin-bottom: 4rem;
+  }
+
+  .case-section-label {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.75rem;
+    font-size: 0.7rem;
+    font-weight: 500;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--orange);
+    margin-bottom: 1.25rem;
+  }
+
+  .case-section-label::before {
+    content: '';
+    display: block;
+    width: 2rem;
+    height: 1.5px;
+    background: var(--orange);
+  }
+
+  .case-section h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.8rem;
+    font-weight: 700;
+    color: var(--dark);
+    margin-bottom: 1.25rem;
+    line-height: 1.2;
+  }
+
+  .case-section p {
+    font-size: 1.05rem;
+    line-height: 1.8;
+    color: #444;
+    margin-bottom: 1.25rem;
+    font-weight: 300;
+  }
+
+  .case-section p strong {
+    color: var(--dark);
+    font-weight: 500;
+  }
+
+  /* OBJECTION QUOTE - styled as what the mover said, not a testimonial */
+  .objection {
+    border-left: 3px solid var(--dark);
+    padding: 0.25rem 0 0.25rem 1.75rem;
+    margin: 2rem 0;
+  }
+
+  .objection p {
+    font-family: 'Playfair Display', serif;
+    font-style: italic;
+    font-size: 1.3rem;
+    line-height: 1.5;
+    color: var(--dark);
+    font-weight: 700;
+    margin-bottom: 0;
+  }
+
+  /* ONE-LINE STATEMENT */
+  .one-line {
+    max-width: 780px;
+    margin: 0 auto;
+    padding: 0 5%;
+    text-align: center;
+  }
+
+  .one-line p {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(1.2rem, 2.2vw, 1.5rem);
+    font-style: italic;
+    font-weight: 700;
+    color: var(--dark);
+    line-height: 1.5;
+    padding: 2.5rem 0;
+    border-bottom: 1px solid var(--border);
+  }
+
+  /* NUMBERED STEPS */
+  .steps {
+    list-style: none;
+    counter-reset: step;
+    margin: 1.75rem 0;
+  }
+
+  .steps li {
+    counter-increment: step;
+    position: relative;
+    padding-left: 3rem;
+    margin-bottom: 1.5rem;
+    font-size: 1.05rem;
+    line-height: 1.75;
+    color: #444;
+    font-weight: 300;
+  }
+
+  .steps li::before {
+    content: counter(step);
+    position: absolute;
+    left: 0;
+    top: 0.1rem;
+    width: 1.9rem;
+    height: 1.9rem;
+    background: var(--orange);
+    color: white;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Playfair Display', serif;
+    font-size: 0.9rem;
+    font-weight: 700;
+  }
+
+  .steps li strong {
+    color: var(--dark);
+    font-weight: 500;
+  }
+
+  /* SHADED BLOCK - What I Got Wrong First */
+  .wrong-block {
+    background: var(--white);
+    border: 1px solid var(--border);
+    border-top: 3px solid var(--charcoal);
+    padding: 2.25rem 2.25rem;
+    margin: 1.75rem 0;
+  }
+
+  .wrong-block p {
+    margin-bottom: 1.25rem;
+  }
+
+  .wrong-block p:last-child {
+    margin-bottom: 0;
+  }
+
+  /* DIVIDER */
+  .divider {
+    border: none;
+    border-top: 1px solid var(--border);
+    margin: 3rem 0;
+  }
+
+  /* CTA */
+  .case-cta {
+    background: var(--charcoal);
+    padding: 4rem 5%;
+    text-align: center;
+  }
+
+  .case-cta h3 {
+    font-family: 'Playfair Display', serif;
+    font-size: 2rem;
+    color: white;
+    margin-bottom: 1rem;
+  }
+
+  .case-cta p {
+    color: rgba(255,255,255,0.5);
+    margin-bottom: 2rem;
+    font-weight: 300;
+  }
+
+  .cta-links {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    flex-wrap: wrap;
+  }
+
+  .btn-primary {
+    display: inline-block;
+    padding: 0.85rem 2rem;
+    background: var(--orange);
+    color: white;
+    text-decoration: none;
+    font-size: 0.875rem;
+    font-weight: 500;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    transition: background 0.2s;
+  }
+
+  .btn-primary:hover { background: #c96a2a; }
+
+  .btn-ghost {
+    display: inline-block;
+    padding: 0.85rem 2rem;
+    background: transparent;
+    color: white;
+    text-decoration: none;
+    font-size: 0.875rem;
+    font-weight: 500;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    border: 1.5px solid rgba(255,255,255,0.3);
+    transition: all 0.2s;
+  }
+
+  .btn-ghost:hover {
+    background: white;
+    color: var(--dark);
+  }
+
+  /* FOOTER */
+  footer {
+    background: var(--dark);
+    border-top: 1px solid rgba(255,255,255,0.08);
+    padding: 1.5rem 5%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  footer span { font-size: 0.8rem; color: rgba(255,255,255,0.3); }
+
+  @media (max-width: 600px) {
+    .case-meta { flex-wrap: wrap; gap: 1.5rem; }
+    .stat-strip { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="index.html" class="nav-logo">Robert Lise</a>
+  <ul class="nav-links">
+    <li><a href="index.html#about">About</a></li>
+    <li><a href="index.html#portfolio">Portfolio</a></li>
+    <li><a href="index.html#experience">Experience</a></li>
+    <li><a href="index.html#contact">Contact</a></li>
+  </ul>
+</nav>
+
+<div class="case-hero">
+  <a href="index.html#portfolio" class="back-link"> Back to Portfolio</a>
+  <p class="case-label">Case Study</p>
+  <h1 class="case-title">The Pricing Model Was Right. The Onboarding Was Wrong.</h1>
+  <p class="case-subtitle">Getting a signature and getting adoption turned out to be two different jobs.</p>
+  <div class="case-meta">
+    <div class="meta-item">
+      <span>Company</span>
+      <strong>Unpakt</strong>
+    </div>
+    <div class="meta-item">
+      <span>Original Title</span>
+      <strong>Business Development Manager</strong>
+    </div>
+    <div class="meta-item">
+      <span>Timeframe</span>
+      <strong>2015–2018</strong>
+    </div>
+  </div>
+</div>
+
+<div class="stat-strip">
+  <div class="stat-box">
+    <strong>600 → 800+</strong>
+    <span>Registered Movers</span>
+  </div>
+  <div class="stat-box">
+    <strong>~200</strong>
+    <span>Onboarded Personally</span>
+  </div>
+  <div class="stat-box">
+    <strong>3 Years</strong>
+    <span>2015 – 2018</span>
+  </div>
+</div>
+
+<div class="case-content">
+
+  <div class="case-section">
+    <p class="case-section-label">Setup</p>
+    <p>Unpakt was the marketplace to compare and book moving companies. A customer chose their movers, booked online at a guaranteed price, and a moving company showed up and did the job. Throughout most of the United States, moving companies priced based on time, which meant no guaranteed price. So for almost every mover we brought on, this pricing model was new.</p>
+    <p>My original title was Business Development Manager. Six hundred moving companies were already registered on the platform. My job was to bring on more.</p>
+  </div>
+
+  <div class="case-section">
+    <p class="case-section-label">What I Found</p>
+    <p>Users started showing up. And moves started getting declined.</p>
+    <p>A decline is the worst thing that can happen on a marketplace like this. The customer thinks they booked a mover. Then the mover says no. Bad for the customer, bad for the mover, bad for Unpakt.</p>
+    <p>So I called the movers who were declining. What I found was pricing nobody had actually validated with them. Rates they'd never seen before. Accounts they didn't remember agreeing to. One mover had two locations listed on the platform: one real, in Maryland, and one in Florida that didn't exist. They found out when a user tried to book it.</p>
+    <p>My job stopped being business development and became account rescue.</p>
+  </div>
+
+  <div class="case-section">
+    <p class="case-section-label">The Real Problem</p>
+    <h2>Two Objections, Not One</h2>
+    <p>Getting movers to trust the pricing meant solving two separate problems, and I didn't understand that until I was deep into it.</p>
+    <p>First: could the calculation itself be trusted. Movers had spent their whole careers pricing off instinct and experience. Handing them a number based on cubic feet and asking them to just believe it was accurate was a real ask.</p>
+    <div class="objection">
+      <p>"We price by the hour. I have no idea how long a move will take until I do it."</p>
+    </div>
+    <p>Second, and separate from the first: what happens when something changes on the day of the move. Inventory that wasn't reported, an extra flight of stairs, a longer carry than expected. That one wasn't actually true. The guarantee adjusted for exactly this. But movers had no reason to assume that unless someone told them, and some needed to see it happen before they believed it.</p>
+    <div class="objection">
+      <p>"If the move runs long, I eat the difference."</p>
+    </div>
+    <p>Two different fears. One about whether the number was right in the first place. One about whether it would still be right if the day didn't go as planned.</p>
+  </div>
+
+  <div class="case-section">
+    <p class="case-section-label">What I Built</p>
+    <h2>Certification, Not Instruction</h2>
+    <ol class="steps">
+      <li><strong>Re-earn the trust.</strong> Open with the booked move sitting in front of them. That's real demand and real money, not an empty promise.</li>
+      <li><strong>Prove the calculation.</strong> Walk through three to five real move scenarios and ask what they'd charge for each. Reverse-engineer their own cubic-foot rate out of their own numbers, so the price came from their history, not a formula they had no reason to trust.</li>
+      <li><strong>Certify against edge cases.</strong> Stairs, long carries, holidays, oversized inventory like pianos. Once they signed off on how those were priced, the account went back live.</li>
+      <li><strong>Explain the day-of adjustment.</strong> If something changed on the move itself, the price moved with it. Most movers hadn't heard that part, and some didn't fully believe it until they saw it happen.</li>
+      <li><strong>Get them onto the calendar.</strong> Many didn't know it existed. I showed them trucks and seasonal pricing, and ran fake moves on peak dates to prove the percentages actually worked.</li>
+      <li><strong>Loop it back to product.</strong> I flagged the pattern on certain distances and sizes to the CEO and worked with the production team to fix it at the platform level.</li>
+    </ol>
+    <p>Steps 2 and 3 solved the calculation problem: movers watched their own numbers turn into a rate, then stress-tested it against the jobs that actually go wrong. Step 4 solved the adjustment problem, and for some movers that one only fully landed after a real move proved it.</p>
+  </div>
+
+  <div class="case-section">
+    <p class="case-section-label">What I Got Wrong First</p>
+    <div class="wrong-block">
+      <p>The first version of this was simpler than it needed to be. Show a mover one clean 300 cubic foot example, let them guess a rate, take the nod, move on.</p>
+      <p>They'd sign off. Then decline their first real move, because all I'd shown them was the easy case. I'd certified the happy path, not the actual job.</p>
+      <p>That's where the stress test came from. After that first pass, I started building moves with stairs, long carries, and oversized inventory, and made the mover price all of it before I turned their account back on. The clean example had told me nothing about whether they'd actually hold up.</p>
+      <p>That fixed how well movers trusted the calculation. It didn't touch whether they trusted the price to hold up if something changed on the move itself. That problem was still ahead of me, and it needed its own fix.</p>
+    </div>
+  </div>
+
+  <div class="case-section">
+    <p class="case-section-label">Where It Landed</p>
+    <p>Over three years I onboarded around 200 movers myself. The platform went from 600 registered to more than 800. I lost around 50 accounts along the way, mostly movers who'd book a move and go quiet, which is what the inherited problem looked like when it went uncaught.</p>
+  </div>
+
+  <hr class="divider">
+
+  <div class="case-section" style="margin-bottom: 0;">
+    <p class="case-section-label">What Transfers</p>
+    <h2>The Same Shape of Problem</h2>
+    <p>Hourly-to-cubic-foot and rep-to-new-methodology are the same shape of problem. Same resistance, same adoption gap.</p>
+    <p><strong>Translation beats instruction.</strong> Map the new thing onto deals people already ran, in their own language, instead of teaching it as a new concept.</p>
+    <p><strong>Certification has to include the mess.</strong> A clean example proves nothing. Test people against the actual edge cases they'll hit.</p>
+    <p><strong>Adoption problems aren't always one problem.</strong> What looked like a single objection was actually two: whether the number was right, and whether it would hold up if the day didn't go as planned. Treating it as one thing would have meant solving half the problem and wondering why movers still weren't converting.</p>
+    <p><strong>Enablement should feed back to product.</strong> The pattern I flagged on certain distances and sizes became a platform-level fix, not just something I taught around individually.</p>
+  </div>
+
+</div>
+
+<div class="case-cta">
+  <h3>Want to see more?</h3>
+  <p>View the full portfolio or get in touch directly.</p>
+  <div class="cta-links">
+    <a href="index.html#portfolio" class="btn-primary">Back to Portfolio</a>
+    <a href="index.html#contact" class="btn-ghost">Get In Touch</a>
+  </div>
+</div>
+
+<footer>
+  <span>© 2026 Robert Lise</span>
+  <span>Hoboken, NJ</span>
+</footer>
+
+</body>
+</html>
